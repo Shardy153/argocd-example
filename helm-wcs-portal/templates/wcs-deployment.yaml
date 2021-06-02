@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wcsportal
+  labels:
+    name: wcsportal
+    app: wcsportal
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:    
+      containers:
+      - name: wcsportal
+        image: shardy153/wcsportal:{{ .Values.imageTag }}
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "750m"
+        env:
+        - name: MYSQL_HOST
+          value: "mysql-svc"
+        - name: MYSQL_PORT
+          value: "80"
+        - name: MYSQL_DB
+          value: "WCS"
+        - name: MYSQL_TABLE
+          value: "wcs_status"
+        - name: MYSQL_USER
+          value: "root"
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-pass
+              key: mysql-password
+        ports:
+          - name: http
+            containerPort: 80
+            protocol: TCP
+        imagePullPolicy: Always
