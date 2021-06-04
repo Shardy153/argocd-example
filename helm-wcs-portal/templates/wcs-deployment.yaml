@@ -27,7 +27,7 @@ spec:
             cpu: "750m"
         env:
         - name: MYSQL_HOST
-          value: "mysql-svc"
+          value: "{{ .Values.mysqlService }}"
         - name: MYSQL_PORT
           value: "80"
         - name: MYSQL_DB

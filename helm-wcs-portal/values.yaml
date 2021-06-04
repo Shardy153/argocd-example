@@ -1,2 +1,3 @@
 nodePort: 31000
 imageTag: v2
+mysqlService: mysql-svc
