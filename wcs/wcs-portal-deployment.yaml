@@ -29,11 +29,20 @@ spec:
         - name: MYSQL_HOST
           value: "mysql-svc"
         - name: MYSQL_PORT
-          value: "80"
+          valueFrom:
+            configMapKeyRef:
+              name: configs
+              key: mysql_port
         - name: MYSQL_DB
-          value: "WCS"
+          valueFrom:
+            configMapKeyRef:
+              name: configs
+              key: mysql_db
         - name: MYSQL_TABLE
-          value: "wcs_status"
+          valueFrom:
+            configMapKeyRef:
+              name: configs
+              key: mysql_table
         - name: MYSQL_USER
           value: "root"
         - name: MYSQL_PASSWORD
