@@ -6,6 +6,3 @@ data:
   mysql_port: "3306"
   mysql_db: "WCS"
   mysql_table: "wcs_status"
-
-  
-  
