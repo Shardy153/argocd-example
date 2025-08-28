@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wcsportal
+  name: portal
   labels:
-    name: wcsportal
-    app: wcsportal
+    name: portal
+    app: portal
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: wcsportal
+      app: portal
   template:
     metadata:
       labels:
-        app: wcsportal
+        app: portal
     spec:    
       containers:
       - name: wcsportal
